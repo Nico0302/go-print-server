@@ -12,7 +12,7 @@ import (
 const printer = "HP_LaserJet_MFP_M426fdw_5F120D_"
 
 var (
-	printcln *ipp.CUPSClient
+	printcln *ipp.IPPClient
 	httpcln  *http.Client
 )
 
@@ -107,7 +107,7 @@ func urlPrint(w http.ResponseWriter, req *http.Request) {
 func main() {
 	httpcln = &http.Client{}
 
-	printcln = ipp.NewCUPSClient("192.168.1.214", 631, "cups", "&i$Z2$m3sJrKbu73", false)
+	printcln = ipp.NewIPPClient("192.168.1.47", 631, "", "", false)
 
 	err := printcln.TestConnection()
 	if err != nil {
