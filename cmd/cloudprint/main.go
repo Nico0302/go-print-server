@@ -84,7 +84,7 @@ func urlPrint(w http.ResponseWriter, req *http.Request) {
 
 	_, err = printcln.PrintJob(doc, printer, attrs)
 	if err != nil {
-		fmt.Println("PrintError:", ipp.AttributeMediaCol, err)
+		fmt.Println("PrintError:", err)
 		http.Error(w, fmt.Sprintf("Printing error: %s", err.Error()), 400)
 		return
 	}
