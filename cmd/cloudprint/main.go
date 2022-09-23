@@ -4,26 +4,22 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/phin1x/go-ipp"
 )
 
-const printer = "HP_LaserJet_MFP_M426fdw_5F120D_"
-
 var (
-	printcln *ipp.IPPClient
-	httpcln  *http.Client
+	printcln    *ipp.IPPClient
+	printername string
+	httpcln     *http.Client
 )
 
 type UrlPrintReq struct {
 	URL           string `json:"url"`
 	Preset        string `json:"preset"`
 	ForwardCookie string `json:"forwardCookie"`
-}
-
-func printDocument() {
-
 }
 
 func urlPrint(w http.ResponseWriter, req *http.Request) {
@@ -82,7 +78,7 @@ func urlPrint(w http.ResponseWriter, req *http.Request) {
 	}
 	attrs[ipp.AttributeMediaCol] = mediaCol
 
-	_, err = printcln.PrintJob(doc, printer, attrs)
+	_, err = printcln.PrintJob(doc, printername, attrs)
 	if err != nil {
 		fmt.Println("PrintError:", err)
 		http.Error(w, fmt.Sprintf("Printing error: %s", err.Error()), 400)
@@ -92,22 +88,11 @@ func urlPrint(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprintln(w, "Print Successful!")
 }
 
-// func multipartPrint(w http.ResponseWriter, req *http.Request) {
-// 	req.ParseMultipartForm(10 << 20)
-// 	file, handler, err := req.FormFile("file")
-// 	if err != nil {
-// 		http.Error(w, "Invalid File", 400)
-// 		return
-// 	}
-// 	defer file.Close()
-// 	fmt.Println(handler.Header)
-
-// }
-
 func main() {
 	httpcln = &http.Client{}
 
-	printcln = ipp.NewIPPClient("192.168.1.47", 631, "", "", false)
+	printcln = ipp.NewIPPClient(os.Getenv("IPP_HOST"), 631, os.Getenv("IPP_USER"), os.Getenv("IPP_PASSWORD"), false)
+	printername = os.Getenv("IPP_PRINTER_NAME")
 
 	err := printcln.TestConnection()
 	if err != nil {
