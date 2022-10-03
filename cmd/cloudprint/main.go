@@ -3,10 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/phin1x/go-ipp"
 )
 
@@ -91,10 +93,16 @@ func urlPrint(w http.ResponseWriter, req *http.Request) {
 func main() {
 	httpcln = &http.Client{}
 
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
 	printcln = ipp.NewIPPClient(os.Getenv("IPP_HOST"), 631, os.Getenv("IPP_USER"), os.Getenv("IPP_PASSWORD"), false)
 	printername = os.Getenv("IPP_PRINTER_NAME")
 
-	err := printcln.TestConnection()
+	err = printcln.TestConnection()
 	if err != nil {
 		panic(err)
 	}

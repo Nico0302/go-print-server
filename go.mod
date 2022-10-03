@@ -3,6 +3,7 @@ module github.com/gresio/cloudprint
 go 1.18
 
 require (
+	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/judwhite/go-svc v1.2.1 // indirect
 	github.com/kardianos/service v1.2.1 // indirect
 	github.com/phin1x/go-ipp v1.6.0 // indirect
