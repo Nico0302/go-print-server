@@ -4,6 +4,8 @@ github.com/judwhite/go-svc v1.2.1 h1:a7fsJzYUa33sfDJRF2N/WXhA+LonCEEY8BJb1tuS5tA
 github.com/judwhite/go-svc v1.2.1/go.mod h1:mo/P2JNX8C07ywpP9YtO2gnBgnUiFTHqtsZekJrUuTk=
 github.com/kardianos/service v1.2.1 h1:AYndMsehS+ywIS6RB9KOlcXzteWUzxgMgBymJD7+BYk=
 github.com/kardianos/service v1.2.1/go.mod h1:CIMRFEJVL+0DS1a3Nx06NaMn4Dz63Ng6O7dl0qH0zVM=
+github.com/nico0302/go-ipp v1.6.1-0.20220831191225-bbe65c466062 h1:tFllx4QiCigxKoGaevUe7qSrNWz6vQGWUHsBLgHw1AM=
+github.com/nico0302/go-ipp v1.6.1-0.20220831191225-bbe65c466062/go.mod h1:bD6QiK9cRFjyp9t67EybmXretxpeOYz1HpVSwlEkkCs=
 github.com/phin1x/go-ipp v1.6.0 h1:GkWlclZGl/zPwqi8GmJ3Ldk/UM07JQZvjHAJsU/PM7U=
 github.com/phin1x/go-ipp v1.6.0/go.mod h1:GZwyNds6grdLi2xRBX22Cvt7Dh7ITWsML0bjrqBF5uo=
 golang.org/x/sys v0.0.0-20201015000850-e3ed0017c211 h1:9UQO31fZ+0aKQOFldThf7BKPMJTiBfWycGh/u3UoO88=

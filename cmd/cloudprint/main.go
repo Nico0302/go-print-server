@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/joho/godotenv"
-	"github.com/phin1x/go-ipp"
+	"github.com/nico0302/go-ipp"
 )
 
 var (
@@ -26,7 +26,7 @@ type UrlPrintReq struct {
 
 func urlPrint(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Println("NEW REQUEST")
+	log.Println("new request")
 	d := json.NewDecoder(req.Body)
 	r := &UrlPrintReq{}
 	err := d.Decode(r)
@@ -94,9 +94,8 @@ func main() {
 	httpcln = &http.Client{}
 
 	err := godotenv.Load(".env")
-
 	if err != nil {
-		log.Fatalf("Error loading .env file")
+		log.Println("Could not load .env file")
 	}
 
 	printcln = ipp.NewIPPClient(os.Getenv("IPP_HOST"), 631, os.Getenv("IPP_USER"), os.Getenv("IPP_PASSWORD"), false)
@@ -107,10 +106,9 @@ func main() {
 		panic(err)
 	}
 
-	// attrs, _ := printcln.GetPrinterAttributes(printer, []string{"media-type-supported"})
-	// fmt.Println(attrs)
+	attrs, _ := printcln.GetPrinterAttributes(printername, []string{"media-type-supported"})
+	log.Println(attrs)
 
 	http.HandleFunc("/print", urlPrint)
-	//http.HandleFunc("/upload", multipartPrint)
 	http.ListenAndServe(":8080", nil)
 }
