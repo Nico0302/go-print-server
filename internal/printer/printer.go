@@ -24,16 +24,6 @@ type PrinterConfig struct {
 	Password string
 }
 
-type MediaCol struct {
-	MediaSource string `mapstructure:"media-source"`
-	MediaType   string `mapstructure:"media-type"`
-	Media       string `mapstructure:"media"`
-}
-
-type JobAttributes struct {
-	MediaCol MediaCol `mapstructure:"media-col"`
-}
-
 func NewPrinter(name string, conf PrinterConfig) *Printer {
 	printer := new(Printer)
 	printer.Name = name

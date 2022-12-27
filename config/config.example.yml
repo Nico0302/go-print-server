@@ -1,24 +1,40 @@
+# HTTP configuration for the APi endpoint
 http:
+  # Port under which the server is reachable.
   port: 8631
-  users:
-    example:
-      password: secret
+  # Uncomment to enable basic auth.
+  # users:
+  #   example: # Username (lowercase)
+  #     password: secret
 
+# Logger configuration
 logger:
+  # Log Level (debug, info, warning, error)
   level: debug
 
+# Configuration of connected IPP printers
 printers:
-  example-printer:
-    host: 192.168.0.123
-    port: 631
+  example-printer: # Printer name (lowercase)
+    host: 192.168.0.123 # IP address or host name
+    port: 631 # IPP port
+    # Uncomment to enable TLS communication with the printer
+    # tls: true
+    # Uncomment to enable basic printer authentication
+    # username: example
+    # password: secret
 
+# Configuration of printing presets
 presets:
+  # default preset (must be specified)
   default:
+    # default printer (must be specified)
     printer: example-printer
+    # attributes for print jobs (can be found under internal/printer/attributes.go)
     media-col:
       media-source: tray-2
 
-  shipping-labels:
+  # additional example preset
+  example-preset: # preset name (lowercase)
     printer: example-printer
     media-col:
       media-source: tray-1
