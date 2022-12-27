@@ -3,6 +3,6 @@ services:
   cloudprint:
     build: .
     ports:
-      - "8613:8631"
+      - "8631:8631"
     volumes:
       - ./config/config.yml:/etc/cloudprint/config.yml:ro

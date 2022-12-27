@@ -2,17 +2,19 @@
 
 FROM golang:1.18-alpine
 
-WORKDIR /app
+WORKDIR $GOPATH/src/github.com/gresio/cloundprint
 
-COPY go.mod ./
-COPY go.sum ./
+# Copy everything from the current directory to the PWD (Present Working Directory) inside the container
+COPY . .
 
-RUN go mod download
+# Download all the dependencies
+RUN go get -d -v ./...
 
-COPY cmd/cloudprint/main.go ./
+# Install the package
+RUN go install -v ./...
 
-RUN go build -o /cloudprint
+# This container exposes port 8631 to the outside world
+EXPOSE 8631
 
-EXPOSE 8080
-
-CMD [ "/cloudprint" ]
+# Run the executable
+CMD ["cloudprint"]
