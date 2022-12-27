@@ -7,12 +7,12 @@ import (
 	"syscall"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/cloudprint/config"
-	"github.com/gresio/cloudprint/internal/auth"
-	"github.com/gresio/cloudprint/internal/controller"
-	"github.com/gresio/cloudprint/internal/fetcher"
-	"github.com/gresio/cloudprint/pkg/httpserver"
-	"github.com/gresio/cloudprint/pkg/logger"
+	"github.com/gresio/print-server/config"
+	"github.com/gresio/print-server/internal/auth"
+	"github.com/gresio/print-server/internal/controller"
+	"github.com/gresio/print-server/internal/fetcher"
+	"github.com/gresio/print-server/pkg/httpserver"
+	"github.com/gresio/print-server/pkg/logger"
 )
 
 // Run creates objects via constructors.

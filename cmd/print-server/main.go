@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/gresio/cloudprint/config"
-	"github.com/gresio/cloudprint/internal/app"
+	"github.com/gresio/print-server/config"
+	"github.com/gresio/print-server/internal/app"
 )
 
 func main() {

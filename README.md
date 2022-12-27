@@ -8,6 +8,7 @@ Web Printing API Server written in Go
 ## Setup
 
 1. Clone this repo.
-2. `$ cp ./config/config.example.yml ./config/config.yml`
-3. Fill out your *config.yml*
-4. `$ go run ./cmd/cloudprint/main.go`
+2. `$ go mod download`
+3. `$ cp ./config/config.example.yml ./config/config.yml`
+4. Fill out your _config.yml_
+5. `$ go run ./cmd/print-server/main.go`

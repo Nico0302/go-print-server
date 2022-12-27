@@ -2,7 +2,7 @@
 
 FROM golang:1.18-alpine
 
-WORKDIR $GOPATH/src/github.com/gresio/cloundprint
+WORKDIR $GOPATH/src/github.com/gresio/print-server
 
 # Copy everything from the current directory to the PWD (Present Working Directory) inside the container
 COPY . .
@@ -17,4 +17,4 @@ RUN go install -v ./...
 EXPOSE 8631
 
 # Run the executable
-CMD ["cloudprint"]
+CMD ["print-server"]

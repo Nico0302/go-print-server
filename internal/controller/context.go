@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gresio/cloudprint/config"
-	"github.com/gresio/cloudprint/internal/printer"
+	"github.com/gresio/print-server/config"
+	"github.com/gresio/print-server/internal/printer"
 )
 
 const (

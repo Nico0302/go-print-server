@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/cloudprint/internal/fetcher"
-	"github.com/gresio/cloudprint/internal/printer"
-	"github.com/gresio/cloudprint/pkg/logger"
+	"github.com/gresio/print-server/internal/fetcher"
+	"github.com/gresio/print-server/internal/printer"
+	"github.com/gresio/print-server/pkg/logger"
 )
 
 type printRoutes struct {
