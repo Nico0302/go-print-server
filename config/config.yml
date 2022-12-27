@@ -1,0 +1,24 @@
+http:
+  port: 8631
+  users:
+    example:
+      password: secret
+
+logger:
+  level: debug
+
+printers:
+  example-printer:
+    host: 192.168.0.123
+    port: 631
+
+presets:
+  default:
+    printer: example-printer
+    media-col:
+      media-source: tray-2
+
+  shipping-labels:
+    printer: example-printer
+    media-col:
+      media-source: tray-1
