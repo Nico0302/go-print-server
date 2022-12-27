@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gresio/print-server/internal/auth"
 	"github.com/gresio/print-server/internal/fetcher"
@@ -12,7 +11,7 @@ func NewRouter(handler *gin.Engine, l logger.Interface, c *PrinterContext, f *fe
 	// Options
 	handler.Use(gin.Logger())
 	handler.Use(gin.Recovery())
-	handler.Use(cors.Default())
+	handler.Use(CORSMiddleware())
 
 	// Routers
 	h := handler.Group("/v1", a.GetHandlerFunc())
