@@ -18,7 +18,8 @@ func New(users map[string]User) *Auth {
 
 func (a *Auth) GetHandlerFunc() gin.HandlerFunc {
 	if len(a.users) == 0 {
-		return nil
+		// empty middleware
+		return func(c *gin.Context) { c.Next() }
 	}
 
 	accounts := make(gin.Accounts)

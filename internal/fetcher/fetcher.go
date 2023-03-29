@@ -1,9 +1,7 @@
 package fetcher
 
 import (
-	"bytes"
 	"fmt"
-	"io"
 	"net/http"
 	"strings"
 )
@@ -47,15 +45,9 @@ func (f *Fetcher) DownloadFile(url string, cookies string) (*http.Response, erro
 }
 
 func GetFileSize(resp *http.Response) int {
-	if resp.ContentLength != 0 {
+	if resp.ContentLength >= 0 {
 		return int(resp.ContentLength)
 	}
 
-	buf := &bytes.Buffer{}
-	nRead, err := io.Copy(buf, resp.Body)
-	if err != nil {
-		return 0
-	}
-
-	return int(nRead)
+	return 0
 }
