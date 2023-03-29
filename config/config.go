@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/gresio/print-server/internal/auth"
-	"github.com/gresio/print-server/internal/printer"
+	"github.com/nico0302/go-print-server/internal/auth"
+	"github.com/nico0302/go-print-server/internal/printer"
 	"github.com/spf13/viper"
 )
 

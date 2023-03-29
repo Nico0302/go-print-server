@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/gresio/print-server/config"
-	"github.com/gresio/print-server/internal/app"
+	"github.com/nico0302/go-print-server/config"
+	"github.com/nico0302/go-print-server/internal/app"
 )
 
 func main() {

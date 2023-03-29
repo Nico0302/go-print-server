@@ -1,4 +1,4 @@
-module github.com/gresio/print-server
+module github.com/nico0302/go-print-server
 
 go 1.18
 

@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/print-server/internal/fetcher"
+	"github.com/nico0302/go-print-server/internal/fetcher"
 )
 
 func CORSMiddleware() gin.HandlerFunc {

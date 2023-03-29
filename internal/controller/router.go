@@ -2,9 +2,9 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/print-server/internal/auth"
-	"github.com/gresio/print-server/internal/fetcher"
-	"github.com/gresio/print-server/pkg/logger"
+	"github.com/nico0302/go-print-server/internal/auth"
+	"github.com/nico0302/go-print-server/internal/fetcher"
+	"github.com/nico0302/go-print-server/pkg/logger"
 )
 
 func NewRouter(handler *gin.Engine, l logger.Interface, c *PrinterContext, f *fetcher.Fetcher, a *auth.Auth) {

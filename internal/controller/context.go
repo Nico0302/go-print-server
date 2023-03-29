@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gresio/print-server/config"
-	"github.com/gresio/print-server/internal/printer"
+	"github.com/nico0302/go-print-server/config"
+	"github.com/nico0302/go-print-server/internal/printer"
 )
 
 const (

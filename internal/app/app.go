@@ -7,12 +7,12 @@ import (
 	"syscall"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/print-server/config"
-	"github.com/gresio/print-server/internal/auth"
-	"github.com/gresio/print-server/internal/controller"
-	"github.com/gresio/print-server/internal/fetcher"
-	"github.com/gresio/print-server/pkg/httpserver"
-	"github.com/gresio/print-server/pkg/logger"
+	"github.com/nico0302/go-print-server/config"
+	"github.com/nico0302/go-print-server/internal/auth"
+	"github.com/nico0302/go-print-server/internal/controller"
+	"github.com/nico0302/go-print-server/internal/fetcher"
+	"github.com/nico0302/go-print-server/pkg/httpserver"
+	"github.com/nico0302/go-print-server/pkg/logger"
 )
 
 // Run creates objects via constructors.

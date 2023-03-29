@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gresio/print-server/internal/fetcher"
-	"github.com/gresio/print-server/internal/printer"
-	"github.com/gresio/print-server/pkg/logger"
+	"github.com/nico0302/go-print-server/internal/fetcher"
+	"github.com/nico0302/go-print-server/internal/printer"
+	"github.com/nico0302/go-print-server/pkg/logger"
 )
 
 type printRoutes struct {
