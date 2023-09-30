@@ -6,12 +6,18 @@ import (
 	"github.com/spf13/viper"
 )
 
+type PrinterConfig struct {
+	printer.PrinterConfig     `mapstructure:",squash"`
+	printer.CupsPrinterConfig `mapstructure:",squash"`
+}
+
 type (
 	Config struct {
-		Printers map[string]printer.PrinterConfig `mapstructure:"printers"`
-		Presets  map[string]Preset                `mapstructure:"presets"`
-		HTTP     HttpConfig                       `mapstructure:"http"`
-		Log      LogConfig                        `mapstructure:"logger"`
+		Printers map[string]PrinterConfig      `mapstructure:"printers"`
+		Cups     map[string]printer.CupsConfig `mapstructure:"cups"`
+		Presets  map[string]Preset             `mapstructure:"presets"`
+		HTTP     HttpConfig                    `mapstructure:"http"`
+		Log      LogConfig                     `mapstructure:"logger"`
 	}
 
 	Preset struct {

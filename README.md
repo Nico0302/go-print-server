@@ -10,9 +10,9 @@
 This print server provides an API endpoint (optionally protected by basic auth) which enables users to print a PDF file from a given url.
 
 ```bash
-curl -X POST http://localhost:8631/v1/print/url
-   -u 'example:secret'
-   -H 'Content-Type: application/json'
+curl -X POST http://localhost:8631/v1/print/url \
+   -u 'example:secret' \
+   -H 'Content-Type: application/json' \
    -d '{"url":"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf","preset":"example-preset"}'
 ```
 

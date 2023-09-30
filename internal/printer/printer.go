@@ -7,12 +7,13 @@ import (
 	"github.com/nico0302/go-ipp"
 )
 
-const (
-	DefaultPort = 631
-)
+type IPrinter interface {
+	GetName() string
+	PrintJob(doc Document, jobAttributes JobAttributes) (int, error)
+}
 
 type Printer struct {
-	Name   string
+	name   string
 	client *ipp.IPPClient
 }
 
@@ -26,12 +27,13 @@ type PrinterConfig struct {
 
 func NewPrinter(name string, conf PrinterConfig) *Printer {
 	printer := new(Printer)
-	printer.Name = name
+	printer.name = name
 	printer.client = ipp.NewIPPClient(conf.Host, conf.Port, conf.Username, conf.Password, conf.UseTLS)
+	ipp.NewCUPSClient(conf.Host, conf.Port, conf.Username, conf.Password, conf.UseTLS)
 	return printer
 }
 
-func (p Printer) PrintJob(doc Document, jobAttributes JobAttributes) (int, error) {
+func (p *Printer) PrintJob(doc Document, jobAttributes JobAttributes) (int, error) {
 	attr := make(map[string]interface{})
 	err := mapstructure.Decode(jobAttributes, &attr)
 	if err != nil {
@@ -43,9 +45,13 @@ func (p Printer) PrintJob(doc Document, jobAttributes JobAttributes) (int, error
 		Name:     doc.Name,
 		MimeType: string(doc.MimeType),
 	}
-	id, err := p.client.PrintJob(document, p.Name, attr)
+	id, err := p.client.PrintJob(document, p.name, attr)
 	if err != nil && err != io.EOF {
 		return 0, err
 	}
 	return id, nil
+}
+
+func (p *Printer) GetName() string {
+	return p.name
 }

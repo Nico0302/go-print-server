@@ -30,14 +30,14 @@ func (r *printRoutes) printDocument(doc printer.Document, presetName string) (in
 	if err != nil {
 		return 0, err
 	}
-	printer, err := r.c.getPrinter(preset.Printer)
+	p, err := r.c.getPrinter(preset.Printer)
 	if err != nil {
 		return 0, err
 	}
 
-	r.l.Debug(fmt.Sprintf("Print file %s on printer %s with preset %s.", doc.Name, printer.Name, presetName), "http - print - url")
+	r.l.Debug(fmt.Sprintf("Print file %s on printer %s with preset %s.", doc.Name, p.GetName(), presetName), "http - print - url")
 
-	id, err := printer.PrintJob(doc, preset.JobAttributes)
+	id, err := p.PrintJob(doc, preset.JobAttributes)
 	if err != nil {
 		return 0, fmt.Errorf("IPP error: %w", err)
 	}
