@@ -1,11 +1,16 @@
 package printer
 
 type JobAttributes struct {
-	MediaCol MediaCol `mapstructure:"media-col"`
+	Media                string   `mapstructure:"media,omitempty"`
+	MediaCol             MediaCol `mapstructure:"media-col,omitempty"`
+	OrientationRequested int      `mapstructure:"orientation-requested,omitempty"`
+	PrintQuality         int      `mapstructure:"print-quality,omitempty"`
+	PrintColorMode       string   `mapstructure:"print-color-mode,omitempty"`
+	Sides                string   `mapstructure:"sides,omitempty"`
 }
 
 type MediaCol struct {
-	MediaSource string `mapstructure:"media-source"`
-	MediaType   string `mapstructure:"media-type"`
-	Media       string `mapstructure:"media"`
+	MediaSource   string `mapstructure:"media-source,omitempty"`
+	MediaType     string `mapstructure:"media-type,omitempty"`
+	MediaSizeName string `mapstructure:"media-size-name,omitempty"`
 }
