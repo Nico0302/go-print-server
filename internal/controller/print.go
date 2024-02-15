@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 
@@ -63,6 +64,33 @@ func (r *printRoutes) printDocuments(docs []document) ([]int, error) {
 	return ids, nil
 }
 
+func (r *printRoutes) downloadFile(url string, cookies string) (*printer.Document, error) {
+	file, err := r.f.DownloadFile(url, cookies)
+	if err != nil {
+		return nil, err
+	}
+
+	doc := printer.Document{
+		Name:     "CloudPrintDocument",
+		MimeType: printer.ApplicationPdf,
+	}
+
+	if file.ContentLength > 0 {
+		doc.Body = file.Body
+		doc.Size = int(file.ContentLength)
+	} else {
+		var buf bytes.Buffer
+		_, err = buf.ReadFrom(file.Body)
+		if err != nil {
+			return nil, err
+		}
+		doc.Body = &buf
+		doc.Size = buf.Len()
+	}
+
+	return &doc, nil
+}
+
 type urlPrintResponse struct {
 	JobID int
 }
@@ -82,20 +110,14 @@ func (r *printRoutes) url(c *gin.Context) {
 		return
 	}
 
-	file, err := r.f.DownloadFile(request.Url, cookies)
+	printDoc, err := r.downloadFile(request.Url, cookies)
 	if err != nil {
-		r.l.Error(err, "http - print - url", request.Url)
+		r.l.Error(err, "http - print - url")
 		errorResponse(c, http.StatusInternalServerError, "could not download file")
 		return
 	}
 
-	doc := printer.Document{
-		Body:     file.Body,
-		Size:     fetcher.GetFileSize(file),
-		MimeType: printer.ApplicationPdf,
-	}
-
-	id, err := r.printDocument(doc, request.Preset)
+	id, err := r.printDocument(*printDoc, request.Preset)
 	if err != nil {
 		r.l.Error(err, "http - print - url")
 		errorResponse(c, http.StatusInternalServerError, fmt.Sprintf("print error: %s", err))
@@ -132,18 +154,14 @@ func (r *printRoutes) urls(c *gin.Context) {
 
 	var jobIDs []int
 	for _, doc := range request.Documents {
-		file, err := r.f.DownloadFile(doc.Url, cookies)
+		printDoc, err := r.downloadFile(doc.Url, cookies)
 		if err != nil {
 			r.l.Error(err, "http - print - url", doc.Url)
 			errorResponse(c, http.StatusInternalServerError, "could not download file")
 			return
 		}
 
-		jobID, err := r.printDocument(printer.Document{
-			Body:     file.Body,
-			Size:     fetcher.GetFileSize(file),
-			MimeType: printer.ApplicationPdf,
-		}, doc.Preset)
+		jobID, err := r.printDocument(*printDoc, doc.Preset)
 		if err != nil {
 			r.l.Error(err, "http - print - url")
 			errorResponse(c, http.StatusInternalServerError, fmt.Sprintf("print error: %s", err))

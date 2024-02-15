@@ -43,11 +43,3 @@ func (f *Fetcher) DownloadFile(url string, cookies string) (*http.Response, erro
 	}
 	return resp, nil
 }
-
-func GetFileSize(resp *http.Response) int {
-	if resp.ContentLength >= 0 {
-		return int(resp.ContentLength)
-	}
-
-	return 0
-}
